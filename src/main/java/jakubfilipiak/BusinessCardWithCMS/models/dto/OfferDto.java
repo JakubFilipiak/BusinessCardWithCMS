@@ -1,10 +1,13 @@
 package jakubfilipiak.BusinessCardWithCMS.models.dto;
 
+import lombok.Builder;
+
 import java.util.List;
 
 /**
  * Created by Jakub Filipiak on 20.09.2019
  */
+@Builder
 public class OfferDto {
 
     private String id;

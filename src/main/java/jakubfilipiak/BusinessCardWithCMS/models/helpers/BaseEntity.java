@@ -1,5 +1,7 @@
 package jakubfilipiak.BusinessCardWithCMS.models.helpers;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -10,6 +12,7 @@ import java.util.UUID;
 /**
  * Created by Jakub Filipiak on 20.09.2019
  */
+@Getter
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 

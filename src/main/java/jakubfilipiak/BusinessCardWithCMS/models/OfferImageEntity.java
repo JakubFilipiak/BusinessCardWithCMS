@@ -1,12 +1,14 @@
 package jakubfilipiak.BusinessCardWithCMS.models;
 
 import jakubfilipiak.BusinessCardWithCMS.models.helpers.BaseEntity;
+import lombok.Getter;
 
 import javax.persistence.*;
 
 /**
  * Created by Jakub Filipiak on 25.09.2019
  */
+@Getter
 @Entity
 @Table(name = "offer_images")
 public class OfferImageEntity extends BaseEntity {
