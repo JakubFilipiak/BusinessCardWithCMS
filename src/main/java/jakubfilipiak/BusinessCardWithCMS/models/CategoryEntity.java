@@ -19,4 +19,8 @@ public class CategoryEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "category")
     private List<CategoryImageEntity> images;
+
+    private CategoryEntity(BaseEntity.Builder<?> builder) {
+        super(builder);
+    }
 }

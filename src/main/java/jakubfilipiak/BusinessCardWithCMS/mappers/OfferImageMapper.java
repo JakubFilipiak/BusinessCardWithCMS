@@ -16,32 +16,40 @@ public class OfferImageMapper implements BaseMapper<OfferImageEntity, OfferImage
     public OfferImageDto toDto(OfferImageEntity entity) {
         return OfferImageDto.builder()
                 .id(retrieveId(entity))
-                .path(retrievePath(entity))
+//                .path(retrievePath(entity))
                 .alt(retrieveAlt(entity))
                 .build();
     }
 
     @Override
     public OfferImageEntity toEntity(OfferImageDto dto) {
-        return null;
+        return new OfferImageEntity.OfferImageEntityBuilder()
+                .alt(retrieveAlt(dto))
+                .build();
     }
 
     private String retrieveId(OfferImageEntity entity) {
         return entity.getId().toString();
     }
 
-    private String retrievePath(OfferImageEntity entity) {
-        FileEntity file = entity.getFile();
-        if (file == null) return "";
-        else {
-            String path = file.getPath();
-            if (path == null || path.isEmpty()) return "";
-            else return path;
-        }
-    }
+//    private String retrievePath(OfferImageEntity entity) {
+//        FileEntity file = entity.getFile();
+//        if (file == null) return "";
+//        else {
+//            String path = file.getPath();
+//            if (path == null || path.isEmpty()) return "";
+//            else return path;
+//        }
+//    }
 
     private String retrieveAlt(OfferImageEntity entity) {
         String alt = entity.getAlt();
+        if (alt == null || alt.isEmpty()) return "";
+        else return alt;
+    }
+
+    private String retrieveAlt(OfferImageDto dto) {
+        String alt = dto.getAlt();
         if (alt == null || alt.isEmpty()) return "";
         else return alt;
     }

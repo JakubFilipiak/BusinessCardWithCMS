@@ -7,9 +7,7 @@ import jakubfilipiak.BusinessCardWithCMS.models.dto.OfferDto;
 import jakubfilipiak.BusinessCardWithCMS.models.dto.OfferImageDto;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 /**
  * Created by Jakub Filipiak on 27.09.2019
@@ -29,22 +27,39 @@ public class OfferMapper implements BaseMapper<OfferEntity, OfferDto> {
                 .id(retrieveId(entity))
                 .title(retrieveTitle(entity))
                 .description(retrieveDescription(entity))
-                .images(retrieveImages(entity))
+//                .image(retrieveImage(entity))
                 .build();
     }
 
     @Override
     public OfferEntity toEntity(OfferDto dto) {
-        return null;
+        return new OfferEntity.OfferEntityBuilder()
+                .id(retrieveId(dto))
+                .title(retrieveTitle(dto))
+                .description(retrieveDescription(dto))
+//                .image(retrieveImage(dto))
+                .build();
     }
 
     private String retrieveId(OfferEntity entity) {
         return entity.getId().toString();
     }
 
+    private UUID retrieveId(OfferDto dto) {
+        String id = dto.getId();
+        if (id == null || id.isEmpty()) return UUID.randomUUID();
+        else return UUID.fromString(id);
+    }
+
     private String retrieveTitle(OfferEntity entity) {
         String title = entity.getTitle();
         if (title == null || title.isEmpty()) return  "";
+        else return title;
+    }
+
+    private String retrieveTitle(OfferDto dto) {
+        String title = dto.getTitle();
+        if (title == null || title.isEmpty()) return  null;
         else return title;
     }
 
@@ -54,11 +69,21 @@ public class OfferMapper implements BaseMapper<OfferEntity, OfferDto> {
         else return description;
     }
 
-    private List<OfferImageDto> retrieveImages(OfferEntity entity) {
-        List<OfferImageEntity> images = entity.getImages();
-        if (images == null || images.isEmpty()) return new ArrayList<>();
-        else return images.stream()
-                .map(imageMapper::toDto)
-                .collect(Collectors.toList());
+    private String retrieveDescription(OfferDto dto) {
+        String description = dto.getDescription();
+        if (description == null || description.isEmpty()) return null;
+        else return description;
+    }
+
+    private OfferImageDto retrieveImage(OfferEntity entity) {
+        OfferImageEntity image = entity.getImage();
+        if (image == null) return null;
+        else return imageMapper.toDto(image);
+    }
+
+    private OfferImageEntity retrieveImage(OfferDto dto) {
+        OfferImageDto image = dto.getImage();
+        if (image == null) return null;
+        else return imageMapper.toEntity(image);
     }
 }

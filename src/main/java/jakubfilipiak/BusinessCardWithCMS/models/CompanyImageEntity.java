@@ -20,4 +20,8 @@ public class CompanyImageEntity extends BaseEntity {
     @OneToOne
     @MapsId
     private FileEntity file;
+
+    private CompanyImageEntity(BaseEntity.Builder<?> builder) {
+        super(builder);
+    }
 }

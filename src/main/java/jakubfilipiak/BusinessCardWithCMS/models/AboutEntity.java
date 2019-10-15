@@ -13,4 +13,8 @@ import javax.persistence.Table;
 public class AboutEntity extends BaseEntity {
 
     private String description;
+
+    private AboutEntity(BaseEntity.Builder<?> builder) {
+        super(builder);
+    }
 }

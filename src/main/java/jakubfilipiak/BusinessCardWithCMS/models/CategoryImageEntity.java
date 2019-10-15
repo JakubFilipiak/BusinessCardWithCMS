@@ -21,4 +21,8 @@ public class CategoryImageEntity extends BaseEntity {
     @OneToOne
     @MapsId
     private FileEntity file;
+
+    private CategoryImageEntity(BaseEntity.Builder<?> builder) {
+        super(builder);
+    }
 }

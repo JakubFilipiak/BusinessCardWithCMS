@@ -18,8 +18,13 @@ public abstract class BaseEntity implements Serializable {
 
     @Id
     @Column(updatable = false, nullable = false, unique = true)
-    private final UUID id = UUID.randomUUID();
+    private final UUID id;
 
+    protected BaseEntity() { id = null; } // for Hibernate
+
+    protected BaseEntity(Builder<?> builder) {
+        this.id = builder.id;
+    }
 
     @Override
     public int hashCode() {
@@ -30,5 +35,19 @@ public abstract class BaseEntity implements Serializable {
     public boolean equals(Object that) {
         return this == that || (that instanceof BaseEntity
                 && Objects.equals(id, ((BaseEntity) that).id));
+    }
+
+    public abstract static class Builder<T extends Builder<T>> {
+
+        UUID id = UUID.randomUUID();
+
+        public T id(UUID id) {
+            this.id = id;
+            return self();
+        }
+
+        public abstract BaseEntity build();
+
+        protected abstract T self();
     }
 }

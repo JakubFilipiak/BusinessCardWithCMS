@@ -16,6 +16,38 @@ public class FileEntity extends BaseEntity {
 
     private String name;
     private String originalName;
-    private String path;
-    private String openInBrowserUrl;
+
+    private FileEntity() {} // for Hibernate
+
+    private FileEntity(FileEntityBuilder builder) {
+        super(builder);
+        this.name = builder.name;
+        this.originalName = builder.originalName;
+    }
+
+    public static class FileEntityBuilder extends BaseEntity.Builder<FileEntityBuilder> {
+
+        private String name;
+        private String originalName;
+
+        public FileEntityBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public FileEntityBuilder originalName(String originalName) {
+            this.originalName = originalName;
+            return this;
+        }
+
+        @Override
+        public FileEntity build() {
+            return new FileEntity(this);
+        }
+
+        @Override
+        protected FileEntityBuilder self() {
+            return this;
+        }
+    }
 }

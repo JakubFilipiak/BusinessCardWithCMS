@@ -17,4 +17,8 @@ public class ContactEntity extends BaseEntity {
     private String email;
     private String phone;
     private String address;
+
+    private ContactEntity(BaseEntity.Builder<?> builder) {
+        super(builder);
+    }
 }
