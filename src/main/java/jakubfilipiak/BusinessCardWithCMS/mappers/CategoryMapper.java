@@ -11,12 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CategoryMapper implements BaseMapper<CategoryEntity, CategoryDto> {
 
-    private CategoryImageMapper imageMapper;
-
-    public CategoryMapper(CategoryImageMapper imageMapper) {
-        this.imageMapper = imageMapper;
-    }
-
     @Override
     public CategoryDto toDto(CategoryEntity entity) {
         return null;

@@ -13,6 +13,8 @@ import java.util.UUID;
 @Component
 public class ContactMapper implements BaseMapper<ContactEntity, ContactDto> {
 
+    private static final String VALUE_FOR_NULL_OR_EMPTY_STRING = null;
+
     @Override
     public ContactDto toDto(ContactEntity entity) {
         return ContactDto.builder()
@@ -49,61 +51,61 @@ public class ContactMapper implements BaseMapper<ContactEntity, ContactDto> {
 
     private String retrieveName(ContactEntity entity) {
         String name = entity.getName();
-        if (name == null || name.isEmpty()) return "";
+        if (name == null || name.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return name;
     }
 
     private String retrieveName(ContactDto dto) {
         String name = dto.getName();
-        if (name == null || name.isEmpty()) return "";
+        if (name == null || name.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return name;
     }
 
     private String retrieveSurname(ContactEntity entity) {
         String surname = entity.getSurname();
-        if (surname == null || surname.isEmpty()) return "";
+        if (surname == null || surname.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return surname;
     }
 
     private String retrieveSurname(ContactDto dto) {
         String surname = dto.getSurname();
-        if (surname == null || surname.isEmpty()) return "";
+        if (surname == null || surname.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return surname;
     }
 
     private String retrieveEmail(ContactEntity entity) {
         String email = entity.getEmail();
-        if (email == null || email.isEmpty()) return "";
+        if (email == null || email.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return email;
     }
 
     private String retrieveEmail(ContactDto dto) {
         String email = dto.getEmail();
-        if (email == null || email.isEmpty()) return "";
+        if (email == null || email.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return email;
     }
 
     private String retrievePhone(ContactEntity entity) {
         String phone = entity.getPhone();
-        if (phone == null || phone.isEmpty()) return "";
+        if (phone == null || phone.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return phone;
     }
 
     private String retrievePhone(ContactDto dto) {
         String phone = dto.getPhone();
-        if (phone == null || phone.isEmpty()) return "";
+        if (phone == null || phone.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return phone;
     }
 
     private String retrieveAddress(ContactEntity entity) {
         String address = entity.getAddress();
-        if (address == null || address.isEmpty()) return "";
+        if (address == null || address.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return address;
     }
 
     private String retrieveAddress(ContactDto dto) {
         String address = dto.getAddress();
-        if (address == null || address.isEmpty()) return "";
+        if (address == null || address.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return address;
     }
 }

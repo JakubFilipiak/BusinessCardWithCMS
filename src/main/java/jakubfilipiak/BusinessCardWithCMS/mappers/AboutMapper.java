@@ -3,7 +3,6 @@ package jakubfilipiak.BusinessCardWithCMS.mappers;
 import jakubfilipiak.BusinessCardWithCMS.mappers.helpers.BaseMapper;
 import jakubfilipiak.BusinessCardWithCMS.models.AboutEntity;
 import jakubfilipiak.BusinessCardWithCMS.models.dto.AboutDto;
-import jakubfilipiak.BusinessCardWithCMS.models.dto.OfferDto;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -13,6 +12,8 @@ import java.util.UUID;
  */
 @Component
 public class AboutMapper implements BaseMapper<AboutEntity, AboutDto> {
+
+    private static final String VALUE_FOR_NULL_OR_EMPTY_STRING = null;
 
     @Override
     public AboutDto toDto(AboutEntity entity) {
@@ -42,13 +43,13 @@ public class AboutMapper implements BaseMapper<AboutEntity, AboutDto> {
 
     private String retrieveDescription(AboutEntity entity) {
         String description = entity.getDescription();
-        if (description == null || description.isEmpty()) return "";
+        if (description == null || description.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return description;
     }
 
     private String retrieveDescription(AboutDto dto) {
         String description = dto.getDescription();
-        if (description == null || description.isEmpty()) return "";
+        if (description == null || description.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return description;
     }
 }

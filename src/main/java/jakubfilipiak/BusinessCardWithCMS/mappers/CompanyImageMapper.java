@@ -13,6 +13,8 @@ import java.util.UUID;
 @Component
 public class CompanyImageMapper implements BaseMapper<CompanyImageEntity, CompanyImageDto> {
 
+    private static final String VALUE_FOR_NULL_OR_EMPTY_STRING = null;
+
     @Override
     public CompanyImageDto toDto(CompanyImageEntity entity) {
         return CompanyImageDto.builder()
@@ -43,25 +45,25 @@ public class CompanyImageMapper implements BaseMapper<CompanyImageEntity, Compan
 
     private String retrieveName(CompanyImageEntity entity) {
         String name = entity.getName();
-        if (name == null || name.isEmpty()) return "";
+        if (name == null || name.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return name;
     }
 
     private String retrieveName(CompanyImageDto dto) {
         String name = dto.getName();
-        if (name == null || name.isEmpty()) return "";
+        if (name == null || name.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return name;
     }
 
     private String retrieveAlt(CompanyImageEntity entity) {
         String alt = entity.getAlt();
-        if (alt == null || alt.isEmpty()) return "";
+        if (alt == null || alt.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return alt;
     }
 
     private String retrieveAlt(CompanyImageDto dto) {
         String alt = dto.getAlt();
-        if (alt == null || alt.isEmpty()) return "";
+        if (alt == null || alt.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return alt;
     }
 }

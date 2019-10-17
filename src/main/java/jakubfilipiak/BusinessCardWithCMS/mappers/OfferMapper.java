@@ -2,9 +2,7 @@ package jakubfilipiak.BusinessCardWithCMS.mappers;
 
 import jakubfilipiak.BusinessCardWithCMS.mappers.helpers.BaseMapper;
 import jakubfilipiak.BusinessCardWithCMS.models.OfferEntity;
-import jakubfilipiak.BusinessCardWithCMS.models.OfferImageEntity;
 import jakubfilipiak.BusinessCardWithCMS.models.dto.OfferDto;
-import jakubfilipiak.BusinessCardWithCMS.models.dto.OfferImageDto;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -15,11 +13,7 @@ import java.util.UUID;
 @Component
 public class OfferMapper implements BaseMapper<OfferEntity, OfferDto> {
 
-    private OfferImageMapper imageMapper;
-
-    public OfferMapper(OfferImageMapper imageMapper) {
-        this.imageMapper = imageMapper;
-    }
+    private static final String VALUE_FOR_NULL_OR_EMPTY_STRING = null;
 
     @Override
     public OfferDto toDto(OfferEntity entity) {
@@ -27,7 +21,6 @@ public class OfferMapper implements BaseMapper<OfferEntity, OfferDto> {
                 .id(retrieveId(entity))
                 .title(retrieveTitle(entity))
                 .description(retrieveDescription(entity))
-//                .image(retrieveImage(entity))
                 .build();
     }
 
@@ -37,7 +30,6 @@ public class OfferMapper implements BaseMapper<OfferEntity, OfferDto> {
                 .id(retrieveId(dto))
                 .title(retrieveTitle(dto))
                 .description(retrieveDescription(dto))
-//                .image(retrieveImage(dto))
                 .build();
     }
 
@@ -53,37 +45,25 @@ public class OfferMapper implements BaseMapper<OfferEntity, OfferDto> {
 
     private String retrieveTitle(OfferEntity entity) {
         String title = entity.getTitle();
-        if (title == null || title.isEmpty()) return  "";
+        if (title == null || title.isEmpty()) return  VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return title;
     }
 
     private String retrieveTitle(OfferDto dto) {
         String title = dto.getTitle();
-        if (title == null || title.isEmpty()) return  null;
+        if (title == null || title.isEmpty()) return  VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return title;
     }
 
     private String retrieveDescription(OfferEntity entity) {
         String description = entity.getDescription();
-        if (description == null || description.isEmpty()) return  "";
+        if (description == null || description.isEmpty()) return  VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return description;
     }
 
     private String retrieveDescription(OfferDto dto) {
         String description = dto.getDescription();
-        if (description == null || description.isEmpty()) return null;
+        if (description == null || description.isEmpty()) return VALUE_FOR_NULL_OR_EMPTY_STRING;
         else return description;
-    }
-
-    private OfferImageDto retrieveImage(OfferEntity entity) {
-        OfferImageEntity image = entity.getImage();
-        if (image == null) return null;
-        else return imageMapper.toDto(image);
-    }
-
-    private OfferImageEntity retrieveImage(OfferDto dto) {
-        OfferImageDto image = dto.getImage();
-        if (image == null) return null;
-        else return imageMapper.toEntity(image);
     }
 }
