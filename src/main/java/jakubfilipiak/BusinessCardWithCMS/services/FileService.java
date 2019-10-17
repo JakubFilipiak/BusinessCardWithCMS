@@ -90,4 +90,12 @@ public class FileService {
     private Optional<FileEntity> getFileByName(String name) {
         return fileRepository.findByName(name);
     }
+
+    public void deleteFileEntity(FileEntity fileEntity) {
+        if (fileEntity != null) {
+            File fileToDelete = new File(createLocalPath(fileEntity.getName()));
+            if (fileToDelete.exists()) fileToDelete.delete();
+            fileRepository.delete(fileEntity);
+        }
+    }
 }

@@ -92,15 +92,19 @@ public class CompanyImageService {
             if (companyImageDto.getName().equalsIgnoreCase(companyImageEntityOpt.get().getName())) {
                 companyImageDto.setName(createNameAccordingToConvention(companyImageDto.getName()));
                 CompanyImageEntity companyImageEntityToSave = mapDtoToEntity(companyImageDto);
+                FileEntity fileEntityToDelete = null;
                 if (file != null) {
                     Optional<FileEntity> fileEntityOpt = fileService.createFileEntity(file);
                     if (fileEntityOpt.isPresent()) {
+                        fileEntityToDelete = companyImageEntityOpt.get().getFile();
                         companyImageEntityToSave.setFile(fileEntityOpt.get());
                     } else {
                         throw new IOException("Error when saving file");
                     }
                 }
-                return companyImageRepository.save(companyImageEntityToSave);
+                CompanyImageEntity savedEntity = companyImageRepository.save(companyImageEntityToSave);
+                fileService.deleteFileEntity(fileEntityToDelete);
+                return savedEntity;
             }
         }
         return null;
