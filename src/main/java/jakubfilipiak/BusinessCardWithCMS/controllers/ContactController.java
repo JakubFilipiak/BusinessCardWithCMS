@@ -24,13 +24,13 @@ public class ContactController {
     }
 
     @GetMapping()
-    public ResponseEntity<?> getContact() {
+    public ResponseEntity<List<ContactDto>> getContact() {
         List<ContactDto> contacts = contactService.getContactsDto();
         return new ResponseEntity<>(contacts, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<?> updateContact(@RequestParam String id,
+    public ResponseEntity<ContactDto> updateContact(@RequestParam String id,
                                            @RequestParam String name,
                                            @RequestParam String surname,
                                            @RequestParam String email,

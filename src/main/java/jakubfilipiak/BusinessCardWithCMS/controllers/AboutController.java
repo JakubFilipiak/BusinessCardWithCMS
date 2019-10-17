@@ -24,14 +24,14 @@ public class AboutController {
     }
 
     @GetMapping()
-    public ResponseEntity<?> getAbout() {
+    public ResponseEntity<List<AboutDto>> getAbout() {
         List<AboutDto> abouts = aboutService.getAboutsDto();
         return new ResponseEntity<>(abouts, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<?> updateAbout(@RequestParam String id,
-                                         @RequestParam String description) {
+    public ResponseEntity<AboutDto> updateAbout(@RequestParam String id,
+                                                @RequestParam String description) {
         Optional<AboutDto> aboutDtoOpt = aboutService.mapParamsToDto(id, description);
         if (aboutDtoOpt.isPresent()) {
             System.out.println(aboutDtoOpt.get());

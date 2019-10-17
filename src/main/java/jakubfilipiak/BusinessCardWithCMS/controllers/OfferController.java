@@ -26,7 +26,7 @@ public class OfferController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getOffers() {
+    public ResponseEntity<List<OfferDto>> getOffers() {
         List<OfferDto> offers = offerService.getOffersDto();
         return new ResponseEntity<>(offers, HttpStatus.OK);
     }

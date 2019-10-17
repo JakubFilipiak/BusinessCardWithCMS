@@ -1,5 +1,7 @@
 package jakubfilipiak.BusinessCardWithCMS.models.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,12 +14,19 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @ToString
+@ApiModel
 public class ContactDto {
 
+    @ApiModelProperty
     private String id;
+    @ApiModelProperty
     private String name;
+    @ApiModelProperty
     private String surname;
+    @ApiModelProperty
     private String email;
+    @ApiModelProperty
     private String phone;
+    @ApiModelProperty
     private String address;
 }
